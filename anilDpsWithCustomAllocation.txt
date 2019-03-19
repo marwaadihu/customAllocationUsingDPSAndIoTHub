@@ -1,0 +1,42 @@
+1. create-an-iot-hub
+https://docs.microsoft.com/en-us/azure/iot-dps/quick-setup-auto-provision#create-an-iot-hub
+
+2. create-a-iot-hub-device-provisioning-service
+https://docs.microsoft.com/en-us/azure/iot-dps/quick-setup-auto-provision#create-a-new-instance-for-the-iot-hub-device-provisioning-service
+
+3. link-the-iot-hub-and-your-device-provisioning-service
+https://docs.microsoft.com/en-us/azure/iot-dps/quick-setup-auto-provision#link-the-iot-hub-and-your-device-provisioning-service
+
+4. attach-certificate-to-dps-and-verify-using-proof-of-possession
+https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md
+
+here values are,
+certificate 			-	azure-iot-test-only.root.ca.cert.pem
+verificationCertificate	-	verification-code.cert.pem
+
+5. manage-enrollments-add-group-under-dps
+
+6. download provisioning-x509-sample from azure-iot-java-sdk and import in the favourite IDE
+
+7. create device certificate using previously created CACertificate
+https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md
+
+8. replace idscope and global end point from dps with provisioningX509Sample and run the sample
+
+9. add caCertificate string in signerCertificates to verify the device certificate with CACertifcate.
+
+here values are,
+leafPublicPem	-	new-device.cert.pem
+leafPrivateKey	-	new-device.key.pem
+caCertificate 	-	azure-iot-test-only.intermediate.cert.pem
+
+10. create a function app and function in java with httpTrigger with PUT requestMethod
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-java-maven
+
+	- in output iotHubHostName this key must be present
+
+11. manage-enrollments-edit-group-enrollment
+
+	- Select how you want to assign devices to hubs - Custom
+
+12. run the same sample created in step 8.
